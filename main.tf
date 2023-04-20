@@ -195,3 +195,21 @@ resource "aws_key_pair" "access_keys" {
   key_name = "public_access"
   public_key = file("~/.ssh/aws_access.pub")
 }
+
+# Create private Instance 
+resource "aws_instance" "private_instance_1" {
+  instance_type = "t2.micro"
+  ami = "ami-069aabeee6f53e7bf"
+  key_name = aws_key_pair.access_keys.id
+  vpc_security_group_ids = aws_security_group.ssh_icmp_http_access.id
+  subnet_id = aws_subnet.private1.id
+
+  root_block_device {
+    volume_size = 10
+  }
+
+  tags = {
+    "Name" = "private_instance"
+  }
+
+}
