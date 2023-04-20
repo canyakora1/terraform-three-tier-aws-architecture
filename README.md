@@ -3,7 +3,8 @@ Building a 3 tier AWS architecture using terraform
 
 To build a three-tier AWS architecture using Terraform, you would typically follow these steps:
 Create a VPC: Use the aws_vpc resource to create a Virtual Private Cloud (VPC) that will house your architecture. 
-You can specify 
+You can specify
+
 i. the CIDR block range for your VPC, 
 ii. And any additional options such as DNS support or tenancy.
 
@@ -21,22 +22,25 @@ You'll need separate security groups for your web, application, and database tie
 
 Launch EC2 instances: Use the aws_instance resource to launch EC2 instances in your subnets. 
 Be sure to specify the appropriate 
+**************************************************************************************************************************************
 i.      instance type, 
 ii.     AMI, 
 iii.    subnet ID, 
 iv.     security group IDs, 
 v.      and any additional options such as user data or tags.
+****************************************************************************************************************************************
 
 Create an elastic load balancer: Use the aws_lb resource to create an elastic load balancer (ELB) in your public subnet. 
 Associate your web tier instances with the ELB target group, and configure any necessary listener and health check settings.
-
+*****************************************************************************************************************************************
 Create a database: Use the aws_db_instance resource to create a database instance in your private subnet. Be sure to specify the appropriate 
+
 i.      instance type, 
 ii.     AMI, 
 iii.    subnet ID, 
 iv.     security group IDs, 
 v.      and any additional options such as user data or tags such as parameter group settings or backup retention.
-
+*********************************************************************************************************************************************
 Connect the tiers: Configure your application tier instances to connect to the database instance, using the appropriate connection string and credentials. You may also need to configure your security groups and network ACLs to allow the necessary traffic.
     
 These are the basic steps involved in building a three-tier AWS architecture using Terraform. 
